@@ -44,7 +44,7 @@ describe('Tạo đơn hàng Airtime Eload', () => {
    cy.get('#inputProduct_chosen').click().type('Mobifone 50.000 {enter}');
 
    //Chọn pháp nhân bán
-   cy.get('#merchantSale_chosen').click().type('HLS {enter}');
+   cy.get('#merchantSale_chosen').click().type('IMEDIA {enter}');
    cy.get('#merchantBuy_chosen').click().type('VISION{enter}');
 
    //Nhập số lượng
@@ -78,15 +78,15 @@ describe('Tạo đơn hàng Airtime Eload', () => {
       .then(($price) => {
         if ($price.text().includes("10,000")) 
         {
-          cy.get('.commission-' + index).click().type('2');
+          cy.get('.commission-' + index).click().type('2.5');
 
         } else if ($price.text().includes("20,000"))
         {
-          cy.get('.commission-' + index).click().type('2');
+          cy.get('.commission-' + index).click().type('2.6');
         }
         else if ($price.text().includes("30,000"))
         {
-          cy.get('.commission-' + index).click().type('2');
+          cy.get('.commission-' + index).click().type('2.8');
         }
         else 
         {
@@ -94,9 +94,11 @@ describe('Tạo đơn hàng Airtime Eload', () => {
         }
       });
   });
-  cy.get('#sale-note').type('Hangptt test đơn hàng' + " "+ randomNum + randomNum + " ngày " + formattedDate);
+  cy.get('#sale-note').type('Hangptt test xuất hóa đơn airtime' + " "+ randomNum + randomNum + " ngày " + formattedDate);
   // click button 'Gửi duyệt'
-  cy.get('button').contains('Lưu tạm').click();
+  // cy.get('button').contains('Lưu tạm').click();
+  cy.get('button').contains('Gửi duyệt').click();
+  cy.wait(500);
 
 
   });
